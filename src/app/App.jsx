@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../layout/navbar";
+import Footer from "../layout/footer";
 // import AuthForm from "../features/auth/AuthForm";
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
     <>
       <div>
         <Navbar />
+        <Footer />
       </div>
     </>
   );

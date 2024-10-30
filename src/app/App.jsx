@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+
+import { Provider } from "react-redux";
+import store from "./store";
+
 import Navbar from "../layout/navbar";
 import Footer from "../layout/footer";
+import RoomList from "../features/rooms/RoomList";
 // import AuthForm from "../features/auth/AuthForm";
 
 const App = () => {
@@ -9,10 +14,11 @@ const App = () => {
 
   return (
     <>
-      <div>
+      <Provider store={store}>
         <Navbar />
+        <RoomList />
         <Footer />
-      </div>
+      </Provider>
     </>
   );
 };

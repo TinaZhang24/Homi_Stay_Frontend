@@ -9,22 +9,19 @@ export default function RoomList() {
 
   return (
     <>
-      {/* <div className="ListofRooms"> */}
       <ul className="ListofRooms">
-        {rooms.map((r) => (
-          <li key={r.id}>
-            <figure>
-              <img src={r.image} alt={r.roomName} />
-            </figure>
-            <h3>{r.roomName}</h3>
-            <h3>{r.type}</h3>
-            <button>See Details</button>
-            <button>See Reviews</button>
-            {/* <Link to={`/rooms/${r.id}`}>See details</Link> */}
-          </li>
-        ))}
+        {rooms.length > 0 &&
+          rooms.map((room) => (
+            <li key={room.id}>
+              <figure>
+                <img src={room.image} alt={room.roomName} />
+              </figure>
+              <h3>{room.roomName}</h3>
+              <h3>{room.type}</h3>
+              <button>See Reviews</button>
+            </li>
+          ))}
       </ul>
-      {/* </div> */}
     </>
   );
 }

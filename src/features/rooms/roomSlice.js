@@ -8,6 +8,12 @@ const roomApi = api.injectEndpoints({
       transformErrorResponse: (response) => response.error,
       providesTags: ["Room"],
     }),
+    // getRoom: build.query({
+    //   query: (id) => (id ? `/rooms/${id}` : null),
+    //   transformResponse: (response) => response,
+    //   transformErrorResponse: (response) => response.error,
+    //   providesTags: [["Room"], (result, error, id) => [{ type: "Room", id }]],
+    // }),
   }),
 });
 

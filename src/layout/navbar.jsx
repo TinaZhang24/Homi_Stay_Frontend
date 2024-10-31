@@ -21,9 +21,9 @@ const Navbar = () => {
         <span className="font-bold text-xl">Homi Stay</span>
       </a>
       <div className="flex gap-2 border border-black rounded-full p-2">
-        <div>Location</div>
+        <div>Check-in Date</div>
         <div className="border border-black"></div>
-        <div>Date</div>
+        <div>Check-out Date</div>
         <div className="border border-black"></div>
         <div>Guests</div>
         <button className="bg-primary text-white p-1 rounded-full">

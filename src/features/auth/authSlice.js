@@ -4,10 +4,6 @@ import api from "../../app/api";
 /** API endpoints */
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    /*me: builder.query({
-      query: "me",
-      providesTags: ["Me"],
-    }),*/
     register: builder.mutation({
       query: (credentials) => ({
         url: "register",
@@ -24,7 +20,7 @@ const authApi = api.injectEndpoints({
     }),
   }),
 });
-export const { useMeQuery, useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation } = authApi;
 
 /** Session storage key */
 const TOKEN_KEY = "token";

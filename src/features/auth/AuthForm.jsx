@@ -6,29 +6,31 @@ import { useNavigate } from "react-router-dom";
  *
  */
 function AuthForm() {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useState(true);
   const authAction = isLogin ? "Login" : "Register";
   const altCopy = isLogin
     ? "Need an account? Register here."
     : "Already have an account?  Login here.";
+  console.log(altCopy);
+  const [login, { error: loginError }] = useLoginMutation();
+  const [register, { error: registerError }] = useRegisterMutation();
 
-  const [login] = useLoginMutation();
-  const [register] = useRegisterMutation();
-
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [isAdmin, setIsadmin] = useState();
 
   const attemptAuth = async (event) => {
     event.preventDefault();
 
     const authMethod = isLogin ? login : register;
-    const credentials = { username, password };
+    const credentials = { name, email, password };
 
     try {
       await authMethod(credentials).unwrap();
-      /*navigate("/");*/
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
@@ -39,26 +41,44 @@ function AuthForm() {
       <h1>{authAction}</h1>
       <form onSubmit={attemptAuth}>
         <label>
-          Username:
+          Name:
           <input
             type="text"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+        </label>
+        <label>
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
           />
         </label>
         <label>
           Password:
           <input
-            type="text"
+            type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
+        {/* <label>
+          isAdmin:
+          <input
+            type="boolean"
+            value={isAdmin}
+            onChange={(event) => setIsadmin(event.target.value)}
+          />
+        </label> */}
         <button>{authAction}</button>
       </form>
       <a href="#" onClick={() => setIsLogin(!isLogin)}>
         {altCopy}
       </a>
+      {/* {isLogin && loginError && <p role="alert">{loginError.data}</p>}
+      {!isLogin && registerError && <p role="alert">{registerError.data}</p>} */}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGetRoomsQuery } from "./roomSlice";
 import AvailabilityForm from "./AvailabilyForm";
 
@@ -9,17 +9,25 @@ export default function RoomList() {
   //   const { data: rooms = [] } = useGetAvailableRoomsQuery();
   const { data: rooms = [] } = useGetRoomsQuery();
   const [availableRooms, setAvailableRooms] = useState([]);
-  console.log(availableRooms);
+  // console.log(availableRooms);
+  useEffect(() => {
+    if (rooms) {
+      setAvailableRooms(rooms);
+    }
+  }, [rooms]);
   return (
     <>
       <div className="Rooms">
         <div className="AvailabilityForm">
-          <AvailabilityForm setAvailableRooms={setAvailableRooms} />
+          <AvailabilityForm
+            setAvailableRooms={setAvailableRooms}
+            availableRooms={availableRooms}
+          />
         </div>
         <div className="ListofRooms">
           <ul>
-            {rooms.length > 0 &&
-              rooms.map((room) => (
+            {availableRooms.length > 0 ? (
+              availableRooms.map((room) => (
                 <li key={room.id}>
                   <figure>
                     <img src={room.image} alt={room.roomName} />
@@ -33,7 +41,10 @@ export default function RoomList() {
                     <button>See Reviews</button>
                   </p>
                 </li>
-              ))}
+              ))
+            ) : (
+              <p>No rooms available.</p>
+            )}
           </ul>
         </div>
       </div>

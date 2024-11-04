@@ -16,12 +16,12 @@ const roomApi = api.injectEndpoints({
         `/rooms/available?fromDate=${fromDate}&toDate=${toDate}`,
       transformResponse: (response) => response,
       transformErrorResponse: (response) => response.error,
-      providesTags: [
-        ["Room"],
-        (result, error, fromDate, toDate) => [
-          { type: "Room", fromDate, toDate },
-        ],
-      ],
+      // providesTags: [
+      // ["Room"],
+      // (result, error, fromDate, toDate) => [
+      //   { type: "Room", fromDate, toDate },
+      // ],
+      // ],
     }),
 
     getRoom: build.query({

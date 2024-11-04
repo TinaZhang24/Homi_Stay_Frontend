@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetAvailableRoomsQuery } from "./roomSlice";
 
-export default function AvailabilityForm({ setAvailableRooms }) {
+export default function AvailabilityForm({
+  setAvailableRooms,
+  availableRooms,
+}) {
   const [formData, setFormData] = useState({
     fromDate: "",
     toDate: "",
@@ -15,13 +18,19 @@ export default function AvailabilityForm({ setAvailableRooms }) {
     error,
   } = useGetAvailableRoomsQuery(formData, { skip: !triggerSearch });
   console.log(rooms);
+
+  useEffect(() => {
+    if (rooms) {
+      setAvailableRooms(rooms);
+    }
+  }, [rooms, setAvailableRooms]);
+
   async function getAvailability(event) {
     event.preventDefault();
     // const start = new Date(formData.fromDate);
     // const end = new Date(formData.toDate);
     try {
       setTriggerSearch(true);
-      setAvailableRooms(rooms);
       // navigate(`/rooms/available?fromDate=${fromDate}&toDate=${toDate}`);
     } catch (e) {
       console.error(e);

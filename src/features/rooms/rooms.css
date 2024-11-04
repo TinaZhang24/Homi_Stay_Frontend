@@ -7,3 +7,15 @@
 .li {
   list-style-type: none;
 }
+
+.roomDetailPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  line-height: 2rem;
+}
+
+.bookingConfirm {
+  display: flex;
+  flex-direction: column;
+}

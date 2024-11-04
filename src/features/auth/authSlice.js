@@ -1,15 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from "../../app/api";
 
-/** API endpoints */
+/** User Account endpoints */
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    getUser: builder.query({
+      query: () => "profile",
+      providesTags: ["User"],
+    }),
     register: builder.mutation({
       query: (credentials) => ({
         url: "register",
         method: "POST",
         body: credentials,
       }),
+      invalidatesTags: ["User"],
     }),
     login: builder.mutation({
       query: (credentials) => ({
@@ -17,10 +22,12 @@ const authApi = api.injectEndpoints({
         method: "POST",
         body: credentials,
       }),
+      invalidatesTags: ["User"],
     }),
   }),
 });
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useGetUserQuery, useLoginMutation, useRegisterMutation } =
+  authApi;
 
 /** Session storage key */
 const TOKEN_KEY = "token";

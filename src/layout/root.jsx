@@ -6,8 +6,8 @@ function Root() {
   return (
     <>
       <Navbar />
-      <Footer />
       <Outlet />
+      <Footer />
     </>
   );
 }

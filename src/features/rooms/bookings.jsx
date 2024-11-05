@@ -5,7 +5,6 @@ export default function Bookings() {
   const { data: bookings = [] } = useGetBookingsQuery();
 
   if (!bookings) return <p>Loading...</p>;
-  console.log(bookings);
   return (
     <>
       <h1>Bookings</h1>
@@ -23,12 +22,12 @@ export default function Bookings() {
 }
 
 function Booking({ booking }) {
-  const [cancelBooking, { isLoading }] = useCancelBookingMutation();
-  console.log(booking);
+  const [cancelBooking, { cancelIsLoading }] = useCancelBookingMutation();
   const tryCancelBooking = (event) => {
     event.preventDefault();
     cancelBooking(booking.id);
   };
+
   const checkin = new Date(booking.fromDate).toLocaleDateString();
   const checkout = new Date(booking.toDate).toLocaleDateString();
 
@@ -44,9 +43,8 @@ function Booking({ booking }) {
       <figure>
         <img src={booking.room.image} alt={booking.room.roomName} />
       </figure>
-
       <form onSubmit={tryCancelBooking}>
-        <button>{isLoading ? "Cancelling..." : "Cancel Booking"}</button>
+        <button>{cancelIsLoading ? "Cancelling..." : "Cancel Booking"}</button>
       </form>
     </li>
   );

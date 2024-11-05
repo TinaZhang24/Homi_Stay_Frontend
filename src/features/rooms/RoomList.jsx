@@ -1,38 +1,42 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+
+import { useSelector } from "react-redux";
 import { useGetRoomsQuery } from "./roomSlice";
 import AvailabilityForm from "./AvailabilyForm";
 
 import "./rooms.css";
 
 export default function RoomList() {
-  //   const { data: rooms = [] } = useGetAvailableRoomsQuery();
-  const { data: rooms = [] } = useGetRoomsQuery();
-  const [availableRooms, setAvailableRooms] = useState([]);
-  // console.log(availableRooms);
-  useEffect(() => {
-    if (rooms) {
-      setAvailableRooms(rooms);
-    }
-  }, [rooms]);
+  const { error, isLoading } = useGetRoomsQuery();
+  const rooms = useSelector((state) => state.rooms.rooms);
+
+  if (isLoading) {
+    return <h1>is Loading ...</h1>;
+  }
+  if (error) {
+    return <p>error fetching rooms ...</p>;
+  }
+
   return (
     <>
-      <div className="Rooms">
+      <div>
         <div className="AvailabilityForm">
-          <AvailabilityForm
-            setAvailableRooms={setAvailableRooms}
-            availableRooms={availableRooms}
-          />
+          <AvailabilityForm />
+          <p>{rooms.length && `${rooms.length} results`} </p>
         </div>
-        <div className="ListofRooms">
-          <ul>
-            {availableRooms.length > 0 ? (
-              availableRooms.map((room) => (
-                <li key={room.id}>
-                  <figure>
-                    <img src={room.image} alt={room.roomName} />
+        <div>
+          <ul className="grid">
+            {rooms.length > 0 &&
+              rooms.map((room) => (
+                <li className="card" key={room.id}>
+                  <figure className="card-header">
+                    <img
+                      className="card-image"
+                      src={room.image}
+                      alt={room.roomName}
+                    />
                   </figure>
-                  <h3>Room Name: {room.roomName}</h3>
+                  <h3>{room.roomName}</h3>
                   <h3>{room.type}</h3>
                   <p>
                     <Link to={`/rooms/${room.id}`}>See Details</Link>
@@ -41,10 +45,7 @@ export default function RoomList() {
                     <button>See Reviews</button>
                   </p>
                 </li>
-              ))
-            ) : (
-              <p>No rooms available.</p>
-            )}
+              ))}
           </ul>
         </div>
       </div>

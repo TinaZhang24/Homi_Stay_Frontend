@@ -1,42 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 import { useGetAvailableRoomsQuery } from "./roomSlice";
 
-export default function AvailabilityForm({
-  setAvailableRooms,
-  availableRooms,
-}) {
+export default function AvailabilityForm() {
   const [formData, setFormData] = useState({
     fromDate: "",
     toDate: "",
   });
-  const navigate = useNavigate();
-  const [triggerSearch, setTriggerSearch] = useState(false);
-  const {
-    data: rooms,
-    isLoading,
-    error,
-  } = useGetAvailableRoomsQuery(formData, { skip: !triggerSearch });
-  console.log(rooms);
 
-  useEffect(() => {
-    if (rooms) {
-      setAvailableRooms(rooms);
-    }
-  }, [rooms, setAvailableRooms]);
+  const [triggerSearch, setTriggerSearch] = useState(false);
+  const { isLoading, error } = useGetAvailableRoomsQuery(formData, {
+    skip: !triggerSearch,
+  });
 
   async function getAvailability(event) {
     event.preventDefault();
-    // const start = new Date(formData.fromDate);
-    // const end = new Date(formData.toDate);
-    try {
-      setTriggerSearch(true);
-      // navigate(`/rooms/available?fromDate=${fromDate}&toDate=${toDate}`);
-    } catch (e) {
-      console.error(e);
-    }
+
+    setTriggerSearch(true);
   }
 
+  if (isLoading) {
+    return <h1>is Loading ...</h1>;
+  }
+  if (error) {
+    return <p>errir fetching rooms ...</p>;
+  }
   return (
     <form onSubmit={getAvailability}>
       <label>

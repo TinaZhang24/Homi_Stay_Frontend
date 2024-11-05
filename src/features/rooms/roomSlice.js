@@ -1,6 +1,6 @@
+import { createSlice } from "@reduxjs/toolkit";
 import api from "../../app/api";
 
-/** Contains endpoints for both rooms and bookings */
 const roomApi = api.injectEndpoints({
   endpoints: (build) => ({
     getRooms: build.query({
@@ -8,22 +8,30 @@ const roomApi = api.injectEndpoints({
       transformResponse: (response) => response,
       transformErrorResponse: (response) => response.error,
       providesTags: ["Room"],
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setRooms(data));
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }),
-    // available?fromDate=2024-10-29&toDate=2024-11-05
     getAvailableRooms: build.query({
       query: ({ fromDate, toDate }) =>
-        // to check correctness?
         `/rooms/available?fromDate=${fromDate}&toDate=${toDate}`,
       transformResponse: (response) => response,
       transformErrorResponse: (response) => response.error,
-      // providesTags: [
-      // ["Room"],
-      // (result, error, fromDate, toDate) => [
-      //   { type: "Room", fromDate, toDate },
-      // ],
-      // ],
+      providesTags: ["Room"],
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setRooms(data));
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }),
-
     getRoom: build.query({
       query: (id) => (id ? `/rooms/${id}` : null),
       transformResponse: (response) => response,
@@ -35,7 +43,7 @@ const roomApi = api.injectEndpoints({
 
     getBookings: build.query({
       query: () => "/bookings",
-      transformResponse: (response) => response,
+      transformResponse: (response) => response.reservation,
       providesTags: ["Bookings"],
     }),
 
@@ -50,7 +58,7 @@ const roomApi = api.injectEndpoints({
 
     addBooking: build.mutation({
       query: (bookingRoom) => ({
-        url: `/bookings/`,
+        url: "/bookings/:id",
         method: "POST",
         body: bookingRoom,
       }),
@@ -69,6 +77,18 @@ const roomApi = api.injectEndpoints({
   }),
 });
 
+const roomsSlice = createSlice({
+  name: "rooms",
+  initialState: {
+    rooms: [],
+  },
+  reducers: {
+    setRooms: (state, { payload }) => {
+      state.rooms = payload;
+    },
+  },
+});
+
 export const {
   useGetRoomsQuery,
   useGetRoomQuery,
@@ -78,5 +98,8 @@ export const {
   //   useBookingRoomMutation,
   useCancelBookingMutation,
 } = roomApi;
+
+export const { setRooms } = roomsSlice.actions;
+export const roomReducer = roomsSlice.reducer;
 
 export default roomApi;

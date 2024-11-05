@@ -5,14 +5,14 @@ export default function Bookings() {
   const { data: bookings = [] } = useGetBookingsQuery();
 
   if (!bookings) return <p>Loading...</p>;
-
+  console.log(bookings);
   return (
     <>
       <h1>Bookings</h1>
       {bookings.length ? (
         <ul className="bookings">
-          {bookings.map((room) => (
-            <Booking key={room.id} room={room} />
+          {bookings.map((booking) => (
+            <Booking key={booking.id} booking={booking} />
           ))}
         </ul>
       ) : (
@@ -22,23 +22,29 @@ export default function Bookings() {
   );
 }
 
-function Booking({ room }) {
+function Booking({ booking }) {
   const [cancelBooking, { isLoading }] = useCancelBookingMutation();
-
+  console.log(booking);
   const tryCancelBooking = (event) => {
     event.preventDefault();
-    cancelBooking(room.id);
+    cancelBooking(booking.id);
   };
+  const checkin = new Date(booking.fromDate).toLocaleDateString();
+  const checkout = new Date(booking.toDate).toLocaleDateString();
 
   return (
     <li>
-      <span className="id">{room.id}</span>
-      <span className="roomName">{room.roomName}</span>
-      <span className="type">{room.type}</span>
-      <span className="price">{room.price}</span>
+      <p className="id">Booking ID: {booking.id}</p>
+      <p className="checkin">Check-in Date: {checkin}</p>
+      <p className="checkout">Check-out Date: {checkout}</p>
+      <p className="roomName">Room Name: {booking.room.roomName}</p>
+      <p className="desc">Description: {booking.room.description}</p>
+      <p className="price">Price: ${booking.room.price}</p>
+      <p className="type">{booking.room.type}</p>
       <figure>
-        <img src={room.image} alt={room.roomName} />
+        <img src={booking.room.image} alt={booking.room.roomName} />
       </figure>
+
       <form onSubmit={tryCancelBooking}>
         <button>{isLoading ? "Cancelling..." : "Cancel Booking"}</button>
       </form>

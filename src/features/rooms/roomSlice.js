@@ -35,7 +35,7 @@ const roomApi = api.injectEndpoints({
 
     getBookings: build.query({
       query: () => "/bookings",
-      transformResponse: (response) => response.reservation,
+      transformResponse: (response) => response,
       providesTags: ["Bookings"],
     }),
 
@@ -50,7 +50,7 @@ const roomApi = api.injectEndpoints({
 
     addBooking: build.mutation({
       query: (bookingRoom) => ({
-        url: "/bookings/:id",
+        url: `/bookings/`,
         method: "POST",
         body: bookingRoom,
       }),

@@ -32,7 +32,7 @@ export default function RoomList() {
                   <figure>
                     <img src={room.image} alt={room.roomName} />
                   </figure>
-                  <h3>{room.roomName}</h3>
+                  <h3>Room Name: {room.roomName}</h3>
                   <h3>{room.type}</h3>
                   <p>
                     <Link to={`/rooms/${room.id}`}>See Details</Link>

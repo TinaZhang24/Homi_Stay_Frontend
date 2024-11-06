@@ -31,16 +31,17 @@ const AdminPanel = () => {
 
   // Fetch data once on component mount
   useEffect(() => {
-    if (usersQuery.data) {
-      setUsers(usersQuery.data);
-    }
-    if (bookingsQuery.data) {
-      setBookings(bookingsQuery.data);
-    }
-    if (roomsQuery.data) {
-      setRooms(roomsQuery.data);
-    }
-  }, [rooms]);
+    const loadAll = async()=>{
+      Promise.all(usersQuery,
+      bookingsQuery,
+      roomsQuery,
+      setUsers(usersQuery.data),
+      setBookings(bookingsQuery.data),
+      setRooms(roomsQuery.data),);
+    };
+    loadAll();
+    
+  }, []);
 
   // Handler functions for deleting users, bookings, and rooms
   const handleDeleteUser = async (id) => {
@@ -72,47 +73,46 @@ const AdminPanel = () => {
       console.error("Failed to delete room: ", err);
     }
   };
-  
-  // if (usersQuery.isLoading || bookingsQuery.isLoading || roomsQuery.isLoading) {
-    //   return <p>Loading...</p>;
-    // }
-    
-    // if (usersQuery.error || bookingsQuery.error || roomsQuery.error) {
-      //   return <p>Error: {(usersQuery.error || bookingsQuery.error || roomsQuery.error).message}</p>;
-      // }
-      
+
       return (
         <div>
       <h2>All Users</h2>
-      <ul>
-        {users && (
-          
-          users.map((user) => (
-            <li key={user.name}>
+      {/* <ul>
+        {
+           users&& (
+
+            users.map((user) => (
+              <li key={user.name}>
             {user.name}
             <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
           </li>
             )
-        ))}
-        </ul>
+          ))}
+        </ul> */}
         
         <h2>All Bookings</h2>
         <ul>
-        {bookings.map((booking) => (
-          <li key={booking.id}>
+        {bookings && (
+
+          bookings.map((booking) => (
+            <li key={booking.id}>
             Booking ID: {booking.id}
             <button onClick={() => handleDeleteBooking(booking.id)}>Delete</button>
           </li>
+          )
         ))}
       </ul>
 
 <h2>All Rooms</h2>
       <ul>
-        {rooms.map((room) => (
-          <li key={room.id}>
+        {rooms && (
+
+          rooms.map((room) => (
+            <li key={room.id}>
             Room ID: {room.id}, Name: {room.name}
             <button onClick={() => handleDeleteRoom(room.id)}>Delete</button>
           </li>
+          )
         ))}
       </ul>
     </div>

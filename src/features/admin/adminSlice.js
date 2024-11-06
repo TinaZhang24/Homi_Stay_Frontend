@@ -10,7 +10,10 @@ const adminApi = createApi({
     getAllUsers: builder.query({
       query: () => "/admin/users",
       providesTags: (result) =>
-        result}),
+        result
+          ? [...result.map(({ id }) => ({ type: "User", id })), { type: "User", id: "LIST" }]
+          : [{ type: "User", id: "LIST" }],
+    }),
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `/admin/users/${id}`,
@@ -22,7 +25,8 @@ const adminApi = createApi({
       query: () => "/admin/bookings",
       providesTags: (result) =>
         result
-        
+          ? [...result.map(({ id }) => ({ type: "Booking", id })), { type: "Booking", id: "LIST" }]
+          : [{ type: "Booking", id: "LIST" }],
     }),
     deleteBooking: builder.mutation({
       query: (id) => ({
@@ -35,7 +39,8 @@ const adminApi = createApi({
       query: () => "/admin/rooms",
       providesTags: (result) =>
         result
-          
+          ? [...result.map(({ id }) => ({ type: "Room", id })), { type: "Room", id: "LIST" }]
+          : [{ type: "Room", id: "LIST" }],
     }),
     deleteRoom: builder.mutation({
       query: (id) => ({

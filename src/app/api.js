@@ -9,9 +9,14 @@ const api = createApi({
       return headers;
     },
   }),
-  endpoints: () => ({}),
+  endpoints: (builder) => ({
+    getAllUsers: builder.query({
+      query: () => "/admin/users",
+    }),
+  }),
   // to add other tagTypes needed.
   tagTypes: ["Room", "Auth"],
 });
 
+export const { useGetAllUsersQuery } = api;
 export default api;

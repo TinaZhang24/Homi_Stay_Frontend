@@ -14,7 +14,7 @@ const router = createBrowserRouter([
       //   { index: true, element: <HomePage /> },
       { path: "/auth", element: <AuthForm /> },
       { path: "/", element: <RoomList /> },
-      { path: "/login", element: <Login /> },
+      { path: "/users/login", element: <Login /> },
       { path: "/bookings", element: <Bookings /> },
       { path: "/rooms/:roomId", element: <RoomDetail /> },
       { path: "/adminpanel", element: <AdminPanel /> },

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import api from "../../app/api";
 
 /** Contains endpoints for both rooms and bookings */
+//Rooms
 const roomApi = api.injectEndpoints({
   endpoints: (build) => ({
     getRooms: build.query({

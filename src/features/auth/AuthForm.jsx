@@ -20,7 +20,6 @@ function AuthForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [isAdmin, setIsadmin] = useState();
 
   const attemptAuth = async (event) => {
     event.preventDefault();

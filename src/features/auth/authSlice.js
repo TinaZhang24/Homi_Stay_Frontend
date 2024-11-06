@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import api from "../../app/api";
+// import api from "../../app/api";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import sharedBaseQuery from "../../app/sharedBaseQuery";
 
 /** User Account endpoints */
-const authApi = api.injectEndpoints({
+export const authApi = createApi({
+  reducerPath: "authApi",
+  baseQuery: sharedBaseQuery,
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     getUser: builder.query({
       query: () => "profile",
@@ -10,7 +15,7 @@ const authApi = api.injectEndpoints({
     }),
     register: builder.mutation({
       query: (credentials) => ({
-        url: "register",
+        url: "auth/register",
         method: "POST",
         body: credentials,
       }),
@@ -18,7 +23,7 @@ const authApi = api.injectEndpoints({
     }),
     login: builder.mutation({
       query: (credentials) => ({
-        url: "login",
+        url: "/users/login",
         method: "POST",
         body: credentials,
       }),
@@ -62,9 +67,10 @@ const authSlice = createSlice({
    * when the RTK Query mutations are fulfilled.
    */
   extraReducers: (builder) => {
-    builder.addMatcher(api.endpoints.login.matchFulfilled, storeToken);
-    builder.addMatcher(api.endpoints.register.matchFulfilled, storeToken);
+    builder.addMatcher(authApi.endpoints.login.matchFulfilled, storeToken);
+    builder.addMatcher(authApi.endpoints.register.matchFulfilled, storeToken);
   },
+  
 });
 
 export const { logout } = authSlice.actions;

@@ -5,7 +5,9 @@ const api = createApi({
     baseUrl: "http://localhost:3000",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
-      token && headers.set("authorization", `Bearer ${token}`);
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
       return headers;
     },
   }),
@@ -15,7 +17,7 @@ const api = createApi({
     }),
   }),
   // to add other tagTypes needed.
-  tagTypes: ["Room", "Auth"],
+  tagTypes: ["Room", "Auth", "bookings"],
 });
 
 export const { useGetAllUsersQuery } = api;

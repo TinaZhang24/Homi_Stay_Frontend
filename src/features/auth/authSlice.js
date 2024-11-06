@@ -34,8 +34,8 @@ const TOKEN_KEY = "token";
 
 /** Stores the payload's token in state and session storage */
 const storeToken = (state, { payload }) => {
-  state.token = payload.token;
-  window.sessionStorage.setItem(TOKEN_KEY, payload.token);
+  (state.token = payload.token),
+    window.sessionStorage.setItem(TOKEN_KEY, payload.token);
 };
 
 /** Keeps track of the JWT sent from the API */

@@ -22,7 +22,7 @@ export default function Bookings() {
 }
 
 function Booking({ booking }) {
-  const [cancelBooking, { cancelIsLoading }] = useCancelBookingMutation();
+  const [cancelBooking, { isLoading }] = useCancelBookingMutation();
   const tryCancelBooking = (event) => {
     event.preventDefault();
     cancelBooking(booking.id);
@@ -44,7 +44,7 @@ function Booking({ booking }) {
         <img src={booking.room.image} alt={booking.room.roomName} />
       </figure>
       <form onSubmit={tryCancelBooking}>
-        <button>{cancelIsLoading ? "Cancelling..." : "Cancel Booking"}</button>
+        <button>{isLoading ? "Cancelling..." : "Cancel Booking"}</button>
       </form>
     </li>
   );

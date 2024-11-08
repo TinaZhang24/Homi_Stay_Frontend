@@ -1,11 +1,8 @@
 import { useGetBookingsQuery, useCancelBookingMutation } from "./roomSlice";
-import { useGetUsersQuery } from "../admin/adminSlice";
 
 /** Displays a list of bookings that a logged in user has made , cancels a booking*/
 export default function Bookings() {
   const { data: bookings = [] } = useGetBookingsQuery();
-  const { data: users = [] } = useGetUsersQuery();
-  console.log("users: ", users);
   if (!bookings) return <p>Loading...</p>;
   return (
     <>

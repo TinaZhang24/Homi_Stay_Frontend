@@ -11,7 +11,7 @@ export default function RoomList() {
   const rooms = useSelector((state) => state.rooms.rooms);
 
   if (isLoading) {
-    return <h1>is Loading ...</h1>;
+    return <p>is Loading ...</p>;
   }
   if (error) {
     return <p>error fetching rooms ...</p>;

@@ -1,14 +1,16 @@
+import { NavLink } from "react-router-dom";
+
 export default function AdminPage() {
   return (
     <>
       <p>
-        <Link to={`/users`}>Users</Link>
+        <NavLink to={`/admin/users`}>Users</NavLink>
       </p>
       <p>
-        <Link to={`/bookings`}>Bookings</Link>
+        <NavLink to={`/admin/bookings`}>Bookings</NavLink>
       </p>
       <p>
-        <Link to={`/rooms`}>Rooms</Link>
+        <NavLink to={`/admin/rooms`}>Rooms</NavLink>
       </p>
     </>
   );

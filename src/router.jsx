@@ -5,7 +5,11 @@ import RoomList from "./features/rooms/RoomList";
 import RoomDetail from "./features/rooms/RoomDetail";
 import Bookings from "./features/rooms/bookings";
 import Login from "./features/auth/AuthForm";
-// import AdminPanel from "./features/rooms/AdminPanel";
+import AdminPage from "./features/admin/adminPage";
+import AdminUsers from "./features/admin/adminUsers";
+import AdminBookings from "./features/admin/adminBookings";
+import AdminRooms from "./features/admin/adminRooms";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,8 +21,10 @@ const router = createBrowserRouter([
       { path: "/users/login", element: <Login /> },
       { path: "/bookings", element: <Bookings /> },
       { path: "/rooms/:roomId", element: <RoomDetail /> },
-      // { path: "/adminpanel", element: <AdminPanel /> },
-      // { path: "/admin/users", element: <AdminUsers /> },
+      { path: "/admin", element: <AdminPage /> },
+      { path: "/admin/users", element: <AdminUsers /> },
+      { path: "/admin/bookings", element: <AdminBookings /> },
+      { path: "/admin/rooms", element: <AdminRooms /> },
     ],
   },
 ]);

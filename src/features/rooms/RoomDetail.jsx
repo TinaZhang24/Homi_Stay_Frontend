@@ -10,8 +10,6 @@ export default function RoomDetail() {
     fromDate: "",
     toDate: "",
   });
-  // if (isLoading) return <p>Loading room...</p>;
-  // if (error) return <p>{error.message}</p>;
 
   const navigate = useNavigate();
   const [addBooking] = useAddBookingMutation();

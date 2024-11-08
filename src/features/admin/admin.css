@@ -24,6 +24,7 @@ td {
 .roomTable {
   display: flex;
   justify-content: center;
+  margin-bottom: 7rem;
 }
 
 .adminNavbar {

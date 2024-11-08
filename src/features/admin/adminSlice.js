@@ -10,6 +10,15 @@ const adminApi = api.injectEndpoints({
       transformResponse: (response) => response,
       providesTags: ["Users"],
     }),
+    getUser: build.query({
+      query: (id) => ({
+        url: `admin/users/${id}`,
+        method: "GET",
+      }),
+      transformResponse: (response) => response,
+      transformErrorResponse: (response) => response.error,
+      providesTags: ["Users"],
+    }),
     deleteUser: build.mutation({
       query: (id) => ({
         url: `admin/users/${id}`,
@@ -74,6 +83,7 @@ const adminApi = api.injectEndpoints({
 
 export const {
   useGetUsersQuery,
+  useGetUserQuery,
   useDeleteUserMutation,
   useGetBookingsQuery,
   useDeleteBookingMutation,

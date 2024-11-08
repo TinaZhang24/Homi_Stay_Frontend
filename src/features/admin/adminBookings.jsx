@@ -1,4 +1,5 @@
 import { useGetBookingsQuery } from "./adminSlice";
+import "./admin.css";
 
 export default function AdminBookings() {
   const { data: bookings = [], isLoading, error } = useGetBookingsQuery();
@@ -20,6 +21,7 @@ export default function AdminBookings() {
               <th>Checkout Date</th>
               <th>User</th>
               <th>Room</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -31,6 +33,9 @@ export default function AdminBookings() {
                   <td>{booking.toDate}</td>
                   <td>{booking.userId}</td>
                   <td>{booking.roomId}</td>
+                  <td>
+                    <button>Delete</button>
+                  </td>
                 </tr>
               ))}
           </tbody>

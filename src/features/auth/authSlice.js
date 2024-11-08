@@ -4,10 +4,6 @@ import api from "../../app/api";
 /** User Account endpoints */
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getUser: builder.query({
-      query: () => "profile",
-      providesTags: ["User"],
-    }),
     register: builder.mutation({
       query: (credentials) => ({
         url: "register",

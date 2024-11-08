@@ -32,21 +32,19 @@ export default function RoomDelete() {
 
   return (
     <>
-      <div className="RoomDetail">
-        <div className="roomDetail">
-          <h1>{room.id}</h1>
-          <p>Room Name: {room.roomName}</p>
-          <p>Description: {room.description}</p>
-          <p>Price: {room.price}</p>
-          <p>Image: {room.image}</p>
-          <p>Type: {room.type}</p>
-          <p>
-            {room.booking?.map((booking) => (
-              <span>{booking.id} </span>
-            ))}
-          </p>
-          <button onClick={removeRoom}>Confirm Delete</button>
-        </div>
+      <div className="roomDetail">
+        <h1>{room.id}</h1>
+        <p>Room Name: {room.roomName}</p>
+        <p>Description: {room.description}</p>
+        <p>Price: {room.price}</p>
+        <p>Image: {room.image}</p>
+        <p>Type: {room.type}</p>
+        <p>
+          {room.booking?.map((booking) => (
+            <span>{booking.id} </span>
+          ))}
+        </p>
+        <button onClick={removeRoom}>Confirm Delete</button>
       </div>
     </>
   );

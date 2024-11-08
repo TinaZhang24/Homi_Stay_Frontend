@@ -32,19 +32,17 @@ export default function UserDelete() {
 
   return (
     <>
-      <div className="UserDetail">
-        <div className="userDetail">
-          <h1>{user.id}</h1>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-          <p>isAdmin: {user.isAdmin ? "YES" : "NO"}</p>
-          <p>
-            {user.booking?.map((booking) => (
-              <span>{booking.id} </span>
-            ))}
-          </p>
-          <button onClick={removeUser}>Confirm Delete</button>
-        </div>
+      <div className="userDetail">
+        <h1>{user.id}</h1>
+        <p>Name: {user.name}</p>
+        <p>Email: {user.email}</p>
+        <p>isAdmin: {user.isAdmin ? "YES" : "NO"}</p>
+        <p>
+          {user.booking?.map((booking) => (
+            <span>{booking.id} </span>
+          ))}
+        </p>
+        <button onClick={removeUser}>Confirm Delete</button>
       </div>
     </>
   );

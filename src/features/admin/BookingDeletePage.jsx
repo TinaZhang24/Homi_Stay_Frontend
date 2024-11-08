@@ -39,15 +39,13 @@ export default function BookingDelete() {
 
   return (
     <>
-      <div className="BookingDetail">
-        <div className="bookingDetail">
-          <h1>{booking.id}</h1>
-          <p>Checkin Date: {booking.fromDate}</p>
-          <p>Checkout Date: {booking.toDate}</p>
-          <p>User: {booking.userId}</p>
-          <p>Room: {booking.roomId}</p>
-          <button onClick={removeBooking}>Confirm Delete</button>
-        </div>
+      <div className="bookingDetail">
+        <h1>{booking.id}</h1>
+        <p>Checkin Date: {booking.fromDate}</p>
+        <p>Checkout Date: {booking.toDate}</p>
+        <p>User: {booking.userId}</p>
+        <p>Room: {booking.roomId}</p>
+        <button onClick={removeBooking}>Confirm Delete</button>
       </div>
     </>
   );

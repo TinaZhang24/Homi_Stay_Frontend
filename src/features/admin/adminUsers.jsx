@@ -1,32 +1,37 @@
 import { useGetUsersQuery } from "./adminSlice";
+import "./admin.css";
 
 export default function AdminUsers() {
   const { data: users = [], isLoading, error } = useGetUsersQuery();
-  console.log(users);
-  // if (isLoading) return <p>Loading...</p>;
-  // if (error) return <p>error fetching users</p>;
+  if (isLoading) return <p className="status">Loading...</p>;
+  if (error)
+    return (
+      <p className="status">
+        You must log in as an admin to checkout this page.
+      </p>
+    );
   return (
     <>
-      <div className="row">
-        <h1>Users</h1>
+      <div className="userTable">
         <table className="adminUsers">
           <thead>
             <tr>
               <th>User Id</th>
               <th>Name</th>
               <th>Email</th>
-              {/* <th>Booking</th> */}
               <th>is Admin</th>
+              <th>Booking</th>
             </tr>
           </thead>
           <tbody>
             {users &&
-              users.users.map((user) => (
+              users.map((user) => (
                 <tr>
                   <td>{user.id}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.isAdmin ? "YES" : "NO"}</td>
+                  <td>{user.bookingId}</td>
                 </tr>
               ))}
           </tbody>

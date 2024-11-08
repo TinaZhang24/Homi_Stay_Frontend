@@ -2,12 +2,16 @@ import { useGetBookingsQuery } from "./adminSlice";
 
 export default function AdminBookings() {
   const { data: bookings = [], isLoading, error } = useGetBookingsQuery();
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>error fetching bookings</p>;
+  if (isLoading) return <p className="status">Loading...</p>;
+  if (error)
+    return (
+      <p className="status">
+        You must log in as an admin to checkout this page.
+      </p>
+    );
   return (
     <>
-      <div className="row">
-        <h1>Bookings</h1>
+      <div className="bookingTable">
         <table className="adminBookings">
           <thead>
             <tr>
@@ -16,7 +20,6 @@ export default function AdminBookings() {
               <th>Checkout Date</th>
               <th>User</th>
               <th>Room</th>
-              {/* <th>Review</th> */}
             </tr>
           </thead>
           <tbody>
@@ -28,7 +31,6 @@ export default function AdminBookings() {
                   <td>{booking.toDate}</td>
                   <td>{booking.userId}</td>
                   <td>{booking.roomId}</td>
-                  {/* <td>{booking.review}</td> */}
                 </tr>
               ))}
           </tbody>

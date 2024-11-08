@@ -1,24 +1,30 @@
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useGetRoomsQuery, useAddRoomMutation } from "./adminSlice";
+import { useGetAdminRoomsQuery, useAddAdminRoomMutation } from "./adminSlice";
 import { useState } from "react";
 import "./admin.css";
 
 export default function AdminRooms() {
   /** Get rooms */
-  const { data: rooms = [], isLoading, error } = useGetRoomsQuery();
+  const { data: rooms = [], isLoading, error } = useGetAdminRoomsQuery();
   if (isLoading) return <p className="status">Loading...</p>;
-  if (error) return <p className="status">error fetching rooms</p>;
+  if (error)
+    return (
+      <p className="status">
+        You must log in as an admin to checkout this page.
+      </p>
+    );
   const [formData, setFormData] = useState({
     roomName: "",
     description: "",
-    price: 0,
+    price: "",
     image: "",
     type: "",
   });
 
   /** Add a new room */
   const navigate = useNavigate();
-  const [addRoom] = useAddRoomMutation();
+  const [addRoom] = useAddAdminRoomMutation();
   async function postRoom(event) {
     event.preventDefault();
     try {
@@ -124,7 +130,7 @@ export default function AdminRooms() {
           </thead>
           <tbody>
             {rooms &&
-              rooms.map((room) => (
+              rooms?.map((room) => (
                 <tr>
                   <td>{room.id}</td>
                   <td>{room.roomName}</td>
@@ -134,9 +140,13 @@ export default function AdminRooms() {
                   <figure>
                     <img src={room.image} alt={room.roomName} />
                   </figure>
-                  <td>{room.bookingId}</td>
                   <td>
-                    <button>{isLoading ? "Deleting..." : "Delete"}</button>
+                    {room.booking?.map((booking) => (
+                      <span>{booking.id} </span>
+                    ))}
+                  </td>
+                  <td>
+                    <Link to={`/admin/rooms/${room.id}`}>Delete</Link>
                   </td>
                 </tr>
               ))}

@@ -9,7 +9,9 @@ import AdminPage from "./features/admin/adminPage";
 import AdminUsers from "./features/admin/adminUsers";
 import AdminBookings from "./features/admin/adminBookings";
 import AdminRooms from "./features/admin/adminRooms";
-import UserDetail from "./features/admin/UserDeletePage";
+import UserDelete from "./features/admin/UserDeletePage";
+import BookingDelete from "./features/admin/BookingDeletePage";
+import RoomDelete from "./features/admin/RoomDeletePage";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,9 @@ const router = createBrowserRouter([
       { path: "/admin/users", element: <AdminUsers /> },
       { path: "/admin/bookings", element: <AdminBookings /> },
       { path: "/admin/rooms", element: <AdminRooms /> },
-      { path: "/admin/users/:userId", element: <UserDetail /> },
+      { path: "/admin/users/:userId", element: <UserDelete /> },
+      { path: "/admin/bookings/:bookingId", element: <BookingDelete /> },
+      { path: "/admin/rooms/:roomId", element: <RoomDelete /> },
     ],
   },
 ]);

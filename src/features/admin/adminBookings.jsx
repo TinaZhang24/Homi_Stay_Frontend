@@ -1,8 +1,9 @@
-import { useGetBookingsQuery } from "./adminSlice";
+import { Link } from "react-router-dom";
+import { useGetAdminBookingsQuery } from "./adminSlice";
 import "./admin.css";
 
 export default function AdminBookings() {
-  const { data: bookings = [], isLoading, error } = useGetBookingsQuery();
+  const { data: bookings = [], isLoading, error } = useGetAdminBookingsQuery();
   if (isLoading) return <p className="status">Loading...</p>;
   if (error)
     return (
@@ -34,7 +35,7 @@ export default function AdminBookings() {
                   <td>{booking.userId}</td>
                   <td>{booking.roomId}</td>
                   <td>
-                    <button>Delete</button>
+                    <Link to={`/admin/bookings/${booking.id}`}>Delete</Link>
                   </td>
                 </tr>
               ))}

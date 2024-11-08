@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useGetRoomsQuery } from "./roomSlice";
 import AvailabilityForm from "./AvailabilyForm";
+import "./rooms.css";
 
 export default function RoomList() {
   const { error, isLoading } = useGetRoomsQuery();

@@ -23,7 +23,7 @@ export default function AvailabilityForm() {
     return <h1>is Loading ...</h1>;
   }
   if (error) {
-    return <p>errir fetching rooms ...</p>;
+    return <p>error fetching rooms ...</p>;
   }
   return (
     <form onSubmit={getAvailability}>

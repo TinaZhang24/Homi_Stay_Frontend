@@ -93,10 +93,12 @@ function Booking({ booking }) {
           <label>
             Score the place
             <input
-              type="int"
+              type="number"
               id="rating"
               name="rating"
               class="inputbox"
+              min="0"
+              max="5"
               value={formData.rating}
               onChange={(e) =>
                 setFormData({ ...formData, rating: e.target.value })

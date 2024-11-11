@@ -137,7 +137,7 @@ export default function AdminRooms() {
                       <td>{room.id}</td>
                       <td>{room.roomName}</td>
                       <td>{room.description}</td>
-                      <td>{room.price}</td>
+                      <td>${room.price}</td>
                       <td>{room.type}</td>
                       <figure>
                         <img src={room.image} alt={room.roomName} />

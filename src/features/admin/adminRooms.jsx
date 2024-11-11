@@ -113,7 +113,7 @@ export default function AdminRooms() {
                   }
                 />
               </label>
-              <button>Add Room</button>
+              <button className="btn">Add Room</button>
             </form>
           </div>
           <div className="roomTable">

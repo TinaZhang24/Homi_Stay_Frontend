@@ -49,7 +49,7 @@ export default function AvailabilityForm() {
           onChange={(e) => setFormData({ ...formData, toDate: e.target.value })}
         />
       </label>
-      <button>Search</button>
+      <button className="btn">Search</button>
     </form>
   );
 }

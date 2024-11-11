@@ -39,6 +39,9 @@ export default function RoomDetail() {
             <figure>
               <img src={room.image} alt={room.roomName} />
             </figure>
+            <p>
+              <button className="btn">See Reviews</button>
+            </p>
           </div>
           <div className="RoomReserve">
             <h1>Book Now</h1>
@@ -67,7 +70,9 @@ export default function RoomDetail() {
                   }
                 />
               </label>
-              <button>Confirm</button>
+              <p>
+                <button className="btn">Confirm</button>
+              </p>
             </form>
           </div>
         </div>

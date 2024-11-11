@@ -37,10 +37,9 @@ export default function RoomList() {
                   <h3>{room.roomName}</h3>
                   <h3>{room.type}</h3>
                   <p>
-                    <Link to={`/rooms/${room.id}`}>See Details</Link>
-                  </p>
-                  <p>
-                    <button>See Reviews</button>
+                    <button className="btn">
+                      <Link to={`/rooms/${room.id}`}>See Details</Link>
+                    </button>
                   </p>
                 </li>
               ))}

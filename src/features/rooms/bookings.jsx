@@ -72,18 +72,20 @@ function Booking({ booking }) {
           <img src={booking.room.image} alt={booking.room.roomName} />
         </figure>
         <form className="cancelBooking" onSubmit={tryCancelBooking}>
-          <button>{isLoading ? "Cancelling..." : "Cancel Booking"}</button>
+          <button className="btn">
+            {isLoading ? "Cancelling..." : "Cancel Booking"}
+          </button>
         </form>
       </div>
       <div className="ReviewSection">
         <form className="postReview" onSubmit={postReview}>
           <label>
             Share your experience
-            <input
+            <textarea
               type="text"
               id="description"
               name="description"
-              class="inputbox"
+              className="inputbox"
               value={formData.description}
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })
@@ -96,7 +98,7 @@ function Booking({ booking }) {
               type="number"
               id="rating"
               name="rating"
-              class="inputbox"
+              className="inputbox"
               min="0"
               max="5"
               value={formData.rating}
@@ -111,14 +113,14 @@ function Booking({ booking }) {
               type="text"
               id="image"
               name="image"
-              class="inputbox"
+              className="inputbox"
               value={formData.image}
               onChange={(e) =>
                 setFormData({ ...formData, image: e.target.value })
               }
             />
           </label>
-          <button>Post a review</button>
+          <button className="btn">Post a review</button>
         </form>
       </div>
     </li>

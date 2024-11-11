@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLoginMutation, useRegisterMutation } from "./authSlice";
 import { useNavigate } from "react-router-dom";
+import "./auth.css";
 
 /** Authform allows user to login OR register
  *
@@ -37,47 +38,43 @@ function AuthForm() {
 
   return (
     <>
-      <h1>{authAction}</h1>
-      <form onSubmit={attemptAuth}>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
-        </label>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-        {/* <label>
-          isAdmin:
-          <input
-            type="boolean"
-            value={isAdmin}
-            onChange={(event) => setIsadmin(event.target.value)}
-          />
-        </label> */}
-        <button>{authAction}</button>
-      </form>
-      <a href="#" onClick={() => setIsLogin(!isLogin)}>
-        {altCopy}
-      </a>
-      {/* {isLogin && loginError && <p role="alert">{loginError.data}</p>}
-      {!isLogin && registerError && <p role="alert">{registerError.data}</p>} */}
+      <div className="auth">
+        <div className="authForm">
+          <form onSubmit={attemptAuth}>
+            <label>
+              Name:
+              <input
+                type="text"
+                value={name}
+                className="inputbox"
+                onChange={(event) => setName(event.target.value)}
+              />
+            </label>
+            <label>
+              Email:
+              <input
+                type="email"
+                value={email}
+                className="inputbox"
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </label>
+            <label>
+              Password:
+              <input
+                type="password"
+                value={password}
+                className="inputbox"
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </label>
+            <button className="btn">{authAction}</button>
+          </form>
+          <a href="#" onClick={() => setIsLogin(!isLogin)}>
+            {altCopy}
+          </a>
+        </div>
+      </div>
     </>
   );
 }

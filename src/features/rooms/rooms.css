@@ -63,7 +63,7 @@
 .inputbox {
   display: flex;
   flex-direction: column;
-  border: solid black;
+  border: solid 1px black;
   margin-right: 0.5rem;
 }
 

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./rooms.css";
 
-/** Displays a list of bookings that a logged in user has made , cancels a booking, posts a review*/
+/** Displays a list of rooms that a logged in user has booked, cancels a booking, posts a review*/
 export default function Bookings() {
   const { data: bookings = [] } = useGetBookingsQuery();
   if (!bookings) return <p>Loading...</p>;

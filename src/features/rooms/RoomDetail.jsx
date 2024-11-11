@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAddBookingMutation, useGetRoomQuery } from "./roomSlice";
 import { useState } from "react";
@@ -40,7 +41,9 @@ export default function RoomDetail() {
               <img src={room.image} alt={room.roomName} />
             </figure>
             <p>
-              <button className="btn">See Reviews</button>
+              <button className="btn">
+                <Link to={`/rooms/${room.id}/reviews`}>See Reviews</Link>
+              </button>
             </p>
           </div>
           <div className="RoomReserve">

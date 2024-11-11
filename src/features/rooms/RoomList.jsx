@@ -38,7 +38,7 @@ export default function RoomList() {
                   <h3>{room.type}</h3>
                   <p>
                     <button className="btn">
-                      <Link to={`/rooms/${room.id}`}>See Details</Link>
+                      <Link to={`/rooms/${room.id}`}>View More</Link>
                     </button>
                   </p>
                 </li>

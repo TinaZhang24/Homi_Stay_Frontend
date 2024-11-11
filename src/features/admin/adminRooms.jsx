@@ -60,7 +60,7 @@ export default function AdminRooms() {
               <label>
                 Description
                 <br />
-                <input
+                <textarea
                   type="text"
                   class="inputbox"
                   id="desc"

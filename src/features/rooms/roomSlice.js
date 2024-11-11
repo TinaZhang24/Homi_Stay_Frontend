@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import api from "../../app/api";
 
 /** Contains endpoints for both rooms and bookings */
-//Rooms
+// Rooms
 const roomApi = api.injectEndpoints({
   endpoints: (build) => ({
     getRooms: build.query({
@@ -42,7 +42,6 @@ const roomApi = api.injectEndpoints({
     }),
 
     // Bookings
-
     getBookings: build.query({
       query: () => "/bookings",
       transformResponse: (response) => response,
@@ -67,6 +66,18 @@ const roomApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Rooms", "Bookings"],
     }),
+
+    // Reviews:
+    addReview: build.mutation({
+      query: (review) => ({
+        url: `/reviews`,
+        method: "POST",
+        body: review,
+      }),
+      transformResponse: (response) => response,
+      transformErrorResponse: (response) => response.error,
+      invalidatesTags: ["Reviews"],
+    }),
   }),
 });
 
@@ -89,6 +100,7 @@ export const {
   useGetBookingsQuery,
   useAddBookingMutation,
   useCancelBookingMutation,
+  useAddReviewMutation,
 } = roomApi;
 
 export const { setRooms } = roomsSlice.actions;

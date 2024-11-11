@@ -7,6 +7,8 @@ import "./admin.css";
 export default function AdminRooms() {
   /** Get rooms */
   const { data: rooms = [], isLoading, error } = useGetAdminRoomsQuery();
+
+  /** Add a new room */
   const [formData, setFormData] = useState({
     roomName: "",
     description: "",
@@ -15,7 +17,6 @@ export default function AdminRooms() {
     type: "",
   });
 
-  /** Add a new room */
   const navigate = useNavigate();
   const [addRoom] = useAddAdminRoomMutation();
   async function postRoom(event) {

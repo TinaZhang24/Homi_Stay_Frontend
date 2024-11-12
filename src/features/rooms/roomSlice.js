@@ -70,7 +70,7 @@ const roomApi = api.injectEndpoints({
     // Reviews:
     addReview: build.mutation({
       query: (review) => ({
-        url: `/reviews`,
+        url: `/bookings/reviews`,
         method: "POST",
         body: review,
       }),

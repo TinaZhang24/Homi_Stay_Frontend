@@ -36,11 +36,9 @@ export default function RoomList() {
                   </figure>
                   <h3>{room.roomName}</h3>
                   <h3>{room.type}</h3>
-                  <p>
-                    <button className="btn">
-                      <Link to={`/rooms/${room.id}`}>View More</Link>
-                    </button>
-                  </p>
+                  <button className="btn" id="viewMore">
+                    <Link to={`/rooms/${room.id}`}>View More</Link>
+                  </button>
                 </li>
               ))}
           </ul>

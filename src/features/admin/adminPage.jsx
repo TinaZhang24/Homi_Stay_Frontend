@@ -1,20 +1,27 @@
 import { NavLink } from "react-router-dom";
+import "./admin.css";
 
 export default function AdminPage() {
   return (
     <>
       <div className="adminNavbar">
-        <ul>
+        <menu>
           <li>
-            <NavLink to={`/admin/users`}>Users</NavLink>
+            <button className="btn">
+              <NavLink to={`/admin/users`}> Users </NavLink>
+            </button>
           </li>
           <li>
-            <NavLink to={`/admin/bookings`}>Bookings</NavLink>
+            <button className="btn">
+              <NavLink to={`/admin/bookings`}> Bookings </NavLink>
+            </button>
           </li>
           <li>
-            <NavLink to={`/admin/rooms`}>Rooms</NavLink>
+            <button className="btn">
+              <NavLink to={`/admin/rooms`}> Rooms </NavLink>
+            </button>
           </li>
-        </ul>
+        </menu>
       </div>
     </>
   );

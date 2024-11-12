@@ -6,7 +6,9 @@ import "./Reviews.css";
 export default function Reviews() {
   const { roomId } = useParams();
   const { data: room, isLoading, error } = useGetReviewsQuery(roomId);
-
+  if (!room?.review?.length) {
+    return " This room has no reviews yet.";
+  }
   return (
     <>
       <div className="ReviewsList">
@@ -19,18 +21,18 @@ export default function Reviews() {
             <p>
               Review:
               {room.review?.map((review) => (
-                <span> {review.description}</span>
+                <span key={review.id}> {review.description}</span>
               ))}
             </p>
             <p>
               Rating:
               {room.review?.map((review) => (
-                <span> {review.rating}</span>
+                <span key={review.id}> {review.rating}</span>
               ))}
             </p>
             Image:
             {room.review?.map((review) => (
-              <figure>
+              <figure key={review.id}>
                 <img src={room.review.image} />
               </figure>
             ))}

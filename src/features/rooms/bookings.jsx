@@ -34,22 +34,26 @@ function Booking({ booking }) {
     cancelBooking(booking.id);
   };
 
+  const [roomId, setRoomId] = useState(null);
+
   /** Add a new review */
   const [formData, setFormData] = useState({
     description: "",
     rating: "",
     image: "",
+    roomId: roomId,
   });
 
   const navigate = useNavigate();
   const [addReview] = useAddReviewMutation();
-  async function postReview(event) {
-    event.preventDefault();
+  async function postReview() {
+    console.log(roomId);
     try {
+      console.log(formData);
       const Review = await addReview({
         ...formData,
       }).unwrap();
-      navigate(`/reviews`);
+      navigate(`/rooms/${formData.roomId}/reviews`);
     } catch (e) {
       console.error(e);
     }
@@ -62,6 +66,7 @@ function Booking({ booking }) {
     <li className="singleBooking">
       <div className="DetailSection">
         <p className="id">Booking ID: {booking.id}</p>
+        <p className="roomId">Room ID:{booking.roomId}</p>
         <p className="checkin">Check-in Date: {checkin}</p>
         <p className="checkout">Check-out Date: {checkout}</p>
         <p className="roomName">Room Name: {booking.room.roomName}</p>
@@ -78,7 +83,14 @@ function Booking({ booking }) {
         </form>
       </div>
       <div className="ReviewSection">
-        <form className="postReview" onSubmit={postReview}>
+        <form
+          className="postReview"
+          onSubmit={(e) => {
+            e.preventDefault();
+            setRoomId(booking.roomId);
+            postReview();
+          }}
+        >
           <label>
             Share your experience
             <textarea

@@ -12,7 +12,7 @@ import AdminRooms from "./features/admin/adminRooms";
 import UserDelete from "./features/admin/UserDeletePage";
 import BookingDelete from "./features/admin/BookingDeletePage";
 import RoomDelete from "./features/admin/RoomDeletePage";
-import BookingReviews from "./features/reviews/Reviews";
+import Reviews from "./features/reviews/Reviews";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       { path: "/users/login", element: <Login /> },
       { path: "/bookings", element: <Bookings /> },
       { path: "/rooms/:roomId", element: <RoomDetail /> },
-      { path: "/rooms/:roomId/reviews", element: <BookingReviews /> },
+      { path: "/rooms/:roomId/reviews", element: <Reviews /> },
       { path: "/admin", element: <AdminPage /> },
       { path: "/admin/users", element: <AdminUsers /> },
       { path: "/admin/bookings", element: <AdminBookings /> },

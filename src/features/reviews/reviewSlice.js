@@ -2,14 +2,13 @@ import api from "../../app/api";
 /** Contains endpoints for reviews */
 const reviewApi = api.injectEndpoints({
   endpoints: (build) => ({
-    // Bookings
-    getReviewBookings: build.query({
-      query: () => "/bookings",
+    getReviews: build.query({
+      query: (id) => `/rooms/${id}/reviews`,
       transformResponse: (response) => response,
-      providesTags: ["Bookings"],
+      providesTags: ["Room"],
     }),
   }),
 });
 
-export const { useGetReviewBookingsQuery } = reviewApi;
+export const { useGetReviewsQuery } = reviewApi;
 export default reviewApi;

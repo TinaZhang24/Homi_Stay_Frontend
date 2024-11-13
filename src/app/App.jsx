@@ -6,8 +6,6 @@ import { RouterProvider } from "react-router-dom";
 import router from "../router";
 
 const App = () => {
-  // const [token, setToken] = useState(null);
-
   return (
     <>
       <Provider store={store}>

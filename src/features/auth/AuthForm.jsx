@@ -3,9 +3,7 @@ import { useLoginMutation, useRegisterMutation } from "./authSlice";
 import { useNavigate } from "react-router-dom";
 import "./auth.css";
 
-/** Authform allows user to login OR register
- *
- */
+/** Authform allows user to login OR register */
 function AuthForm() {
   const navigate = useNavigate();
 

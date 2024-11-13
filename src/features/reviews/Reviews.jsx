@@ -7,7 +7,7 @@ export default function Reviews() {
   const { roomId } = useParams();
   const { data: room, isLoading, error } = useGetReviewsQuery(roomId);
   if (!room?.review?.length) {
-    return " This room has no reviews yet.";
+    return <p className="status"> This room has no reviews yet.</p>;
   }
   return (
     <>

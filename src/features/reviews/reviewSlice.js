@@ -5,7 +5,7 @@ const reviewApi = api.injectEndpoints({
     getReviews: build.query({
       query: (id) => `/rooms/${id}/reviews`,
       transformResponse: (response) => response,
-      providesTags: ["Room"],
+      providesTags: ["Reviews"],
     }),
   }),
 });

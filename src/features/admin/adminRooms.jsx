@@ -7,7 +7,10 @@ import "./admin.css";
 export default function AdminRooms() {
   /** Get rooms */
   const { data: rooms = [], isLoading, error } = useGetAdminRoomsQuery();
-
+  /** Grab isAdmin value from local storage */
+  const [isAdmin, setIsAdmin] = useState(
+    JSON.parse(sessionStorage.getItem("isAdmin"))
+  );
   /** Add a new room */
   const [formData, setFormData] = useState({
     roomName: "",
@@ -35,11 +38,9 @@ export default function AdminRooms() {
     <>
       {isLoading && <p className="status">Loading...</p>}
       {error && (
-        <p className="status">
-          You must log in as an admin to checkout this page.
-        </p>
+        <p className="status">You must be logged in as an administrator.</p>
       )}
-      {rooms && (
+      {isAdmin && (
         <div>
           <div className="addRoom">
             <form className="postRoom" onSubmit={postRoom}>
@@ -48,7 +49,7 @@ export default function AdminRooms() {
                 <br />
                 <input
                   type="text"
-                  class="inputbox"
+                  className="inputbox"
                   id="roomName"
                   name="room-name"
                   value={formData.roomName}
@@ -62,7 +63,7 @@ export default function AdminRooms() {
                 <br />
                 <textarea
                   type="text"
-                  class="inputbox"
+                  className="inputbox"
                   id="desc"
                   name="room-description"
                   value={formData.description}
@@ -76,7 +77,7 @@ export default function AdminRooms() {
                 <br />
                 <input
                   type="number"
-                  class="inputbox"
+                  className="inputbox"
                   id="price"
                   name="room-price"
                   value={formData.price}
@@ -90,7 +91,7 @@ export default function AdminRooms() {
                 <br />
                 <input
                   type="text"
-                  class="inputbox"
+                  className="inputbox"
                   id="imageURL"
                   name="room-image"
                   value={formData.image}
@@ -104,7 +105,7 @@ export default function AdminRooms() {
                 <br />
                 <input
                   type="text"
-                  class="inputbox"
+                  className="inputbox"
                   id="type"
                   name="room-type"
                   value={formData.type}
@@ -133,18 +134,18 @@ export default function AdminRooms() {
               <tbody>
                 {rooms &&
                   rooms?.map((room) => (
-                    <tr>
+                    <tr key={room.id}>
                       <td>{room.id}</td>
                       <td>{room.roomName}</td>
                       <td>{room.description}</td>
                       <td>${room.price}</td>
                       <td>{room.type}</td>
-                      <figure>
+                      <td>
                         <img src={room.image} alt={room.roomName} />
-                      </figure>
+                      </td>
                       <td>
                         {room.booking?.map((booking) => (
-                          <span>{booking.id} </span>
+                          <span key={booking.id}>{booking.id} </span>
                         ))}
                       </td>
                       <td>

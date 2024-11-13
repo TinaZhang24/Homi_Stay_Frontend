@@ -3,13 +3,17 @@ import {
   useCancelBookingMutation,
   useAddReviewMutation,
 } from "./roomSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import "./rooms.css";
 
 /** Displays a list of rooms that a logged in user has booked, cancels a booking, posts a review*/
 export default function Bookings() {
   const { data: bookings = [] } = useGetBookingsQuery();
+  const { roomId } = useParams();
+  if (roomId) {
+    console.log(roomId);
+  }
   if (!bookings) return <p>Loading...</p>;
   return (
     <>
@@ -34,20 +38,19 @@ function Booking({ booking }) {
     cancelBooking(booking.id);
   };
 
-  const [roomId, setRoomId] = useState(null);
-
   /** Add a new review */
   const [formData, setFormData] = useState({
     description: "",
     rating: "",
     image: "",
-    roomId: roomId,
+    roomId: booking.roomId,
   });
 
   const navigate = useNavigate();
   const [addReview] = useAddReviewMutation();
-  async function postReview() {
-    console.log(roomId);
+  async function postReview(event) {
+    event.preventDefault();
+    console.log(booking.roomId);
     try {
       console.log(formData);
       const Review = await addReview({
@@ -66,7 +69,6 @@ function Booking({ booking }) {
     <li className="singleBooking">
       <div className="DetailSection">
         <p className="id">Booking ID: {booking.id}</p>
-        <p className="roomId">Room ID:{booking.roomId}</p>
         <p className="checkin">Check-in Date: {checkin}</p>
         <p className="checkout">Check-out Date: {checkout}</p>
         <p className="roomName">Room Name: {booking.room.roomName}</p>
@@ -83,14 +85,7 @@ function Booking({ booking }) {
         </form>
       </div>
       <div className="ReviewSection">
-        <form
-          className="postReview"
-          onSubmit={(e) => {
-            e.preventDefault();
-            setRoomId(booking.roomId);
-            postReview();
-          }}
-        >
+        <form className="postReview" onSubmit={postReview}>
           <label>
             Share your experience
             <textarea
@@ -132,7 +127,9 @@ function Booking({ booking }) {
               }
             />
           </label>
-          <button className="btn">Post a review</button>
+          <button className="btn" onClick={postReview}>
+            Post a review
+          </button>
         </form>
       </div>
     </li>

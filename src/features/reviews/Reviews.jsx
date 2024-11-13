@@ -11,30 +11,20 @@ export default function Reviews() {
   }
   return (
     <>
-      <div className="ReviewsList">
+      <div className="ReviewsBox">
         {isLoading && <p>Loading Room...</p>}
         {error && <p>{error.message}</p>}
         {room && (
-          <div className="roomReviews">
-            <p>Room Name: {room.roomName}</p>
-            <p>Room Type: {room.type}</p>
-            <p>
-              Review:
-              {room.review?.map((review) => (
-                <span key={review.id}> {review.description}</span>
-              ))}
-            </p>
-            <p>
-              Rating:
-              {room.review?.map((review) => (
-                <span key={review.id}> {review.rating}</span>
-              ))}
-            </p>
-            Image:
+          <div className="ReviewsList">
             {room.review?.map((review) => (
-              <figure key={review.id}>
-                <img src={room.review.image} />
-              </figure>
+              <div key={review.id} className="SingleReview">
+                <p>Review: {review.description}</p>
+                <p>Rating: {review.rating}</p>
+                <figure>
+                  Image:
+                  <img src={room.review.image} />
+                </figure>
+              </div>
             ))}
           </div>
         )}

@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useGetRoomsQuery } from "./roomSlice";
 import AvailabilityForm from "./AvailabilyForm";
+import "./rooms.css";
 
 export default function RoomList() {
   const { error, isLoading } = useGetRoomsQuery();
+  /** Access the rooms state(created in roomSlice) using useSelector. */
   const rooms = useSelector((state) => state.rooms.rooms);
 
   if (isLoading) {
@@ -35,12 +37,9 @@ export default function RoomList() {
                   </figure>
                   <h3>{room.roomName}</h3>
                   <h3>{room.type}</h3>
-                  <p>
-                    <Link to={`/rooms/${room.id}`}>See Details</Link>
-                  </p>
-                  <p>
-                    <button>See Reviews</button>
-                  </p>
+                  <button className="btn" id="viewMore">
+                    <Link to={`/rooms/${room.id}`}>View More</Link>
+                  </button>
                 </li>
               ))}
           </ul>

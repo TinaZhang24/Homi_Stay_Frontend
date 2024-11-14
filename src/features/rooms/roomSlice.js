@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from "../../app/api";
 
-/** Contains endpoints for both rooms and bookings */
-//Rooms
+/** Contains endpoints for rooms, bookings and reviews */
+// Rooms
 const roomApi = api.injectEndpoints({
   endpoints: (build) => ({
     getRooms: build.query({
@@ -28,7 +28,9 @@ const roomApi = api.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setRooms(data));
+          // data is passed as the payload to the reducer(setRooms).
+          // reducer name(setRooms) ties with line 95(where we set up reducer in the slice).
+          dispatch(setRooms(data)); // dispatch its own data to the correct reducer
         } catch (error) {
           console.log(error);
         }
@@ -42,7 +44,6 @@ const roomApi = api.injectEndpoints({
     }),
 
     // Bookings
-
     getBookings: build.query({
       query: () => "/bookings",
       transformResponse: (response) => response,
@@ -67,15 +68,30 @@ const roomApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Rooms", "Bookings"],
     }),
+
+    // Reviews:
+    addReview: build.mutation({
+      query: (review) => ({
+        url: `/bookings/reviews`,
+        method: "POST",
+        body: review,
+      }),
+      transformResponse: (response) => response,
+      transformErrorResponse: (response) => response.error,
+      invalidatesTags: ["Reviews"],
+    }),
   }),
 });
 
+// Set up state, reducer and action to handle available rooms. The payload gets changing response/data from API(available rooms)
+// The reducer (action) updates the state with the payload (fetched data from API)
 const roomsSlice = createSlice({
   name: "rooms",
   initialState: {
     rooms: [],
   },
   reducers: {
+    // Reducer name(setRooms) ties with line 33 (where we pass the data as payload)
     setRooms: (state, { payload }) => {
       state.rooms = payload;
     },
@@ -89,6 +105,7 @@ export const {
   useGetBookingsQuery,
   useAddBookingMutation,
   useCancelBookingMutation,
+  useAddReviewMutation,
 } = roomApi;
 
 export const { setRooms } = roomsSlice.actions;

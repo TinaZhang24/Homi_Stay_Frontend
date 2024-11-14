@@ -28,19 +28,28 @@ const adminApi = api.injectEndpoints({
     }),
 
     // Bookings
-    getBookings: build.query({
+    getAdminBookings: build.query({
       query: () => "admin/bookings",
       transformResponse: (response) => response,
       providesTags: ["Bookings"],
     }),
-    deleteBooking: build.mutation({
+    getAdminBooking: build.query({
+      query: (id) => ({
+        url: `admin/bookings/${id}`,
+        method: "GET",
+      }),
+      transformResponse: (response) => response,
+      transformErrorResponse: (response) => response.error,
+      providesTags: ["Bookings"],
+    }),
+    deleteAdminBooking: build.mutation({
       query: (id) => ({
         url: `admin/bookings/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Bookings"],
     }),
-    updateBooking: build.mutation({
+    updateAdminBooking: build.mutation({
       query: (id) => ({
         url: `admin/bookings/${id}`,
         method: "PUT",
@@ -49,12 +58,21 @@ const adminApi = api.injectEndpoints({
     }),
 
     // Rooms
-    getRooms: build.query({
+    getAdminRooms: build.query({
       query: () => "admin/rooms",
       transformResponse: (response) => response,
       providesTags: ["Rooms"],
     }),
-    addRoom: build.mutation({
+    getAdminRoom: build.query({
+      query: (id) => ({
+        url: `admin/rooms/${id}`,
+        method: "GET",
+      }),
+      transformResponse: (response) => response,
+      transformErrorResponse: (response) => response.error,
+      providesTags: ["Rooms"],
+    }),
+    addAdminRoom: build.mutation({
       query: (room) => ({
         url: `admin/rooms`,
         method: "POST",
@@ -64,14 +82,14 @@ const adminApi = api.injectEndpoints({
       transformErrorResponse: (response) => response.error,
       invalidatesTags: ["Rooms"],
     }),
-    deleteRoom: build.mutation({
+    deleteAdminRoom: build.mutation({
       query: (id) => ({
         url: `admin/rooms/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Rooms"],
     }),
-    updateRoom: build.mutation({
+    updateAdminRoom: build.mutation({
       query: (id) => ({
         url: `admin/rooms/${id}`,
         method: "PUT",
@@ -85,13 +103,15 @@ export const {
   useGetUsersQuery,
   useGetUserQuery,
   useDeleteUserMutation,
-  useGetBookingsQuery,
-  useDeleteBookingMutation,
-  useUpdateBookingMutation,
-  useGetRoomsQuery,
-  useAddRoomMutation,
-  useDeleteRoomMutation,
-  useUpdateRoomMutation,
+  useGetAdminBookingsQuery,
+  useGetAdminBookingQuery,
+  useDeleteAdminBookingMutation,
+  useUpdateAdminBookingMutation,
+  useGetAdminRoomsQuery,
+  useGetAdminRoomQuery,
+  useAddAdminRoomMutation,
+  useDeleteAdminRoomMutation,
+  useUpdateAdminRoomMutation,
 } = adminApi;
 
 export default adminApi;

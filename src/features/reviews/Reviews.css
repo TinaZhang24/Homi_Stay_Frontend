@@ -1,0 +1,19 @@
+.ReviewsBox {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7rem;
+}
+
+.ReviewsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.SingleReview {
+  width: 25rem;
+  background-color: #4a154b;
+  color: white;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+}

@@ -10,8 +10,7 @@ const api = createApi({
     },
   }),
   endpoints: () => ({}),
-  // to add other tagTypes needed.
-  tagTypes: ["Room", "Auth"],
+  tagTypes: ["Room", "Auth", "Reviews", "Bookings"],
 });
 
 export default api;

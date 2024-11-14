@@ -2,9 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDeleteUserMutation, useGetUserQuery } from "./adminSlice";
 import "./admin.css";
-import { useState } from "react";
 
-export default function UserDetail() {
+export default function UserDelete() {
   const { userId } = useParams();
   const { data: user, isLoading, error } = useGetUserQuery(userId);
   const token = useSelector((state) => state.auth.token);
@@ -33,15 +32,17 @@ export default function UserDetail() {
 
   return (
     <>
-      <div className="UserDetail">
-        <div className="userDetail">
-          <h1>{user.id}</h1>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-          <p>isAdmin: {user.isAdmin ? "YES" : "NO"}</p>
-          <p>Booking: {user.bookingId}</p>
-          <button onClick={removeUser}>Delete User</button>
-        </div>
+      <div className="userDetail">
+        <h1>{user.id}</h1>
+        <p>Name: {user.name}</p>
+        <p>Email: {user.email}</p>
+        <p>isAdmin: {user.isAdmin ? "YES" : "NO"}</p>
+        <p>
+          {user.booking?.map((booking) => (
+            <span>{booking.id} </span>
+          ))}
+        </p>
+        <button onClick={removeUser}>Confirm Delete</button>
       </div>
     </>
   );

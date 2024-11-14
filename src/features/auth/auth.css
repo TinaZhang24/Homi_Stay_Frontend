@@ -1,0 +1,9 @@
+.auth {
+  display: flex;
+  justify-content: center;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+}

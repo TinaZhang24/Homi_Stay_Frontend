@@ -13,7 +13,6 @@ td {
 .userTable {
   display: flex;
   justify-content: center;
-  width: 75%;
 }
 
 .bookingTable {
@@ -24,6 +23,7 @@ td {
 .roomTable {
   display: flex;
   justify-content: center;
+  margin-bottom: 7rem;
 }
 
 .adminNavbar {
@@ -46,6 +46,11 @@ td {
 
 .inputbox {
   width: 10rem;
+}
+
+#desc {
+  resize: none;
+  height: 25px;
 }
 
 .th {

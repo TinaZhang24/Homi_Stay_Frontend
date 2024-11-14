@@ -5,7 +5,7 @@
 .roomDetailPage {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   line-height: 2rem;
 }
 
@@ -18,12 +18,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
-  margin: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 1rem 7rem 1rem;
 }
 
 .card {
   margin: auto;
+  height: 100%;
   width: 75%;
   padding: 1rem;
   background-color: white;
@@ -52,4 +52,30 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.singleBooking {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 2rem;
+}
+
+.inputbox {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px black;
+  margin-right: 0.5rem;
+}
+
+.bookings {
+  margin-bottom: 7rem;
+}
+
+.btn {
+  background-color: #4a154b;
+  color: white;
+  margin-top: 0.5rem;
+  border-radius: 12px;
+  padding: 0.2rem 0.4rem 0.2rem 0.4rem;
 }

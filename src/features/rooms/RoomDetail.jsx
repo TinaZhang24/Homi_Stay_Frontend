@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAddBookingMutation, useGetRoomQuery } from "./roomSlice";
 import { useState } from "react";
@@ -10,8 +11,6 @@ export default function RoomDetail() {
     fromDate: "",
     toDate: "",
   });
-  // if (isLoading) return <p>Loading room...</p>;
-  // if (error) return <p>{error.message}</p>;
 
   const navigate = useNavigate();
   const [addBooking] = useAddBookingMutation();
@@ -41,6 +40,11 @@ export default function RoomDetail() {
             <figure>
               <img src={room.image} alt={room.roomName} />
             </figure>
+            <p>
+              <button className="btn">
+                <Link to={`/rooms/${room.id}/reviews`}>See Reviews</Link>
+              </button>
+            </p>
           </div>
           <div className="RoomReserve">
             <h1>Book Now</h1>
@@ -69,7 +73,9 @@ export default function RoomDetail() {
                   }
                 />
               </label>
-              <button>Confirm</button>
+              <p>
+                <button className="btn">Confirm</button>
+              </p>
             </form>
           </div>
         </div>

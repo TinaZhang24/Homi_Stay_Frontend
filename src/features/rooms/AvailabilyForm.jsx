@@ -15,7 +15,6 @@ export default function AvailabilityForm() {
 
   async function getAvailability(event) {
     event.preventDefault();
-
     setTriggerSearch(true);
   }
 
@@ -23,7 +22,7 @@ export default function AvailabilityForm() {
     return <h1>is Loading ...</h1>;
   }
   if (error) {
-    return <p>errir fetching rooms ...</p>;
+    return <p>error fetching rooms ...</p>;
   }
   return (
     <form onSubmit={getAvailability}>
@@ -49,7 +48,7 @@ export default function AvailabilityForm() {
           onChange={(e) => setFormData({ ...formData, toDate: e.target.value })}
         />
       </label>
-      <button>Search</button>
+      <button className="btn">Search</button>
     </form>
   );
 }

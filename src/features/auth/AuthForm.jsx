@@ -22,7 +22,6 @@ function AuthForm() {
 
   const attemptAuth = async (event) => {
     event.preventDefault();
-
     const authMethod = isLogin ? login : register;
     const credentials = { name, email, password };
 

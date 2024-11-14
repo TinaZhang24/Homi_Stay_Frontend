@@ -50,9 +50,7 @@ function Booking({ booking }) {
   const [addReview] = useAddReviewMutation();
   async function postReview(event) {
     event.preventDefault();
-    console.log(booking.roomId);
     try {
-      console.log(formData);
       const Review = await addReview({
         ...formData,
       }).unwrap();

@@ -15,7 +15,6 @@ export default function AvailabilityForm() {
 
   async function getAvailability(event) {
     event.preventDefault();
-
     setTriggerSearch(true);
   }
 

@@ -22,14 +22,13 @@ const authApi = api.injectEndpoints({
     }),
   }),
 });
-export const { useGetUserQuery, useLoginMutation, useRegisterMutation } =
-  authApi;
+export const { useLoginMutation, useRegisterMutation } = authApi;
 
-/** Session storage key and isAdmin boolean value*/
+// Session storage key/property //
 const TOKEN_KEY = "token";
 const IS_ADMIN = "isAdmin";
 
-/** Stores the payload's token and isAdmin boolean value in state and session storage */
+// Stores the payload's token and isAdmin boolean value in state and session storage //
 const storeToken = (state, { payload }) => {
   state.token = payload.token;
   state.isAdmin = payload.admin;

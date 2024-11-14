@@ -6,6 +6,7 @@ import "./rooms.css";
 
 export default function RoomList() {
   const { error, isLoading } = useGetRoomsQuery();
+  /** Access the rooms state(created in roomSlice) using useSelector. */
   const rooms = useSelector((state) => state.rooms.rooms);
 
   if (isLoading) {

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from "../../app/api";
 
-/** Contains endpoints for both rooms and bookings */
+/** Contains endpoints for rooms, bookings and reviews */
 // Rooms
 const roomApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -28,7 +28,9 @@ const roomApi = api.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setRooms(data));
+          // data is passed as the payload to the reducer(setRooms).
+          // reducer name(setRooms) ties with line 95(where we set up reducer in the slice).
+          dispatch(setRooms(data)); // dispatch its own data to the correct reducer
         } catch (error) {
           console.log(error);
         }
@@ -81,12 +83,15 @@ const roomApi = api.injectEndpoints({
   }),
 });
 
+// Set up state, reducer and action to handle available rooms. The payload gets changing response/data from API(available rooms)
+// The reducer (action) updates the state with the payload (fetched data from API)
 const roomsSlice = createSlice({
   name: "rooms",
   initialState: {
     rooms: [],
   },
   reducers: {
+    // Reducer name(setRooms) ties with line 33 (where we pass the data as payload)
     setRooms: (state, { payload }) => {
       state.rooms = payload;
     },

@@ -28,7 +28,7 @@ export default function AdminRooms() {
       const Room = await addRoom({
         ...formData,
       }).unwrap();
-      navigate(`/rooms`);
+      navigate(`/admin/rooms`);
     } catch (e) {
       console.error(e);
     }

@@ -20,12 +20,13 @@ export default function AdminBookings() {
           <table className="adminBookings">
             <thead>
               <tr>
-                <th>Booking Id</th>
-                <th>Checkin Date</th>
-                <th>Checkout Date</th>
-                <th>User</th>
-                <th>Room</th>
-                <th>Delete</th>
+                <th> Booking Id </th>
+                <th> Checkin Date </th>
+                <th> Checkout Date </th>
+                <th> User ID </th>
+                <th> User Name </th>
+                <th> Room </th>
+                <th> Delete </th>
               </tr>
             </thead>
             <tbody>
@@ -33,9 +34,10 @@ export default function AdminBookings() {
                 bookings.map((booking) => (
                   <tr key={booking.id}>
                     <td>{booking.id}</td>
-                    <td>{booking.fromDate}</td>
-                    <td>{booking.toDate}</td>
+                    <td>{new Date(booking.fromDate).toLocaleDateString()}</td>
+                    <td>{new Date(booking.toDate).toLocaleDateString()}</td>
                     <td>{booking.userId}</td>
+                    <td>{booking.user.name}</td>
                     <td>{booking.roomId}</td>
                     <td>
                       <Link to={`/admin/bookings/${booking.id}`}>Delete</Link>

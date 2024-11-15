@@ -44,7 +44,9 @@ export default function RoomDelete() {
             <span>{booking.id} </span>
           ))}
         </p>
-        <button onClick={removeRoom}>Confirm Delete</button>
+        <button className="btn" onClick={removeRoom}>
+          Confirm Delete
+        </button>
       </div>
     </>
   );

@@ -42,7 +42,9 @@ export default function UserDelete() {
             <span>{booking.id} </span>
           ))}
         </p>
-        <button onClick={removeUser}>Confirm Delete</button>
+        <button className="btn" onClick={removeUser}>
+          Confirm Delete
+        </button>
       </div>
     </>
   );

@@ -33,8 +33,8 @@ export default function AdminBookings() {
                 bookings.map((booking) => (
                   <tr key={booking.id}>
                     <td>{booking.id}</td>
-                    <td>{booking.fromDate}</td>
-                    <td>{booking.toDate}</td>
+                    <td>{new Date(booking.fromDate).toLocaleDateString()}</td>
+                    <td>{new Date(booking.toDate).toLocaleDateString()}</td>
                     <td>{booking.userId}</td>
                     <td>{booking.roomId}</td>
                     <td>

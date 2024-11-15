@@ -37,6 +37,7 @@ export default function RoomDetail() {
             <h1>Room Name: {room.roomName}</h1>
             <p>{room.type}</p>
             <p>Price: ${room.price}</p>
+            <p>Description: {room.description}</p>
             <figure>
               <img src={room.image} alt={room.roomName} />
             </figure>

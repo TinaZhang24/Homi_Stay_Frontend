@@ -8,7 +8,7 @@ import Login from "./features/auth/AuthForm";
 import AdminPageComp from "./features/admin/AdminPageComp";
 import AdminUsersComp from "./features/admin/AdminUsersComp";
 import AdminBookingsComp from "./features/admin/AdminBookingsComp";
-import AdminRooms from "./features/admin/AdminRoomsComp";
+import AdminRoomsComp from "./features/admin/AdminRoomsComp";
 import UserDelete from "./features/admin/UserDeletePage";
 import BookingDelete from "./features/admin/BookingDeletePage";
 import RoomDelete from "./features/admin/RoomDeletePage";

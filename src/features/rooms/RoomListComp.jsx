@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useGetRoomsQuery } from "./roomSlice";
-import AvailabilityForm from "./AvailabilyForm";
+import AvailabilityForm from "./AvailabilyFormComp";
 import "./rooms.css";
 
-export default function RoomList() {
+export default function RoomListComp() {
   const { error, isLoading } = useGetRoomsQuery();
   /** Access the rooms state(created in roomSlice) using useSelector. */
   const rooms = useSelector((state) => state.rooms.rooms);

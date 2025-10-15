@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import AuthForm from "./features/auth/AuthForm";
-import Root from "./layout/Root";
-import RoomList from "./features/rooms/RoomList";
-import RoomDetail from "./features/rooms/RoomDetail";
-import Bookings from "./features/rooms/Bookings";
+import RootComp from "./layout/RootComp";
+import RoomListComp from "./features/rooms/RoomListComp";
+import RoomDetailComp from "./features/rooms/RoomDetailComp";
+import BookingsComp from "./features/rooms/BookingsComp";
 import Login from "./features/auth/AuthForm";
 import AdminPage from "./features/admin/AdminPage";
 import AdminUsers from "./features/admin/AdminUsers";
@@ -12,19 +12,19 @@ import AdminRooms from "./features/admin/AdminRooms";
 import UserDelete from "./features/admin/UserDeletePage";
 import BookingDelete from "./features/admin/BookingDeletePage";
 import RoomDelete from "./features/admin/RoomDeletePage";
-import Reviews from "./features/reviews/Reviews";
+import ReviewsComp from "./features/reviews/ReviewsComp";
 // Define the routes for the application
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <RootComp />,
     children: [
       { path: "/auth", element: <AuthForm /> },
-      { path: "/", element: <RoomList /> },
+      { path: "/", element: <RoomListComp /> },
       { path: "/users/login", element: <Login /> },
-      { path: "/bookings", element: <Bookings /> },
-      { path: "/rooms/:roomId", element: <RoomDetail /> },
-      { path: "/rooms/:roomId/reviews", element: <Reviews /> },
+      { path: "/bookings", element: <BookingsComp /> },
+      { path: "/rooms/:roomId", element: <RoomDetailComp /> },
+      { path: "/rooms/:roomId/reviews", element: <ReviewsComp /> },
       { path: "/admin", element: <AdminPage /> },
       { path: "/admin/users", element: <AdminUsers /> },
       { path: "/admin/bookings", element: <AdminBookings /> },

@@ -1,8 +1,8 @@
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "./NavbarComp";
+import Footer from "./FooterComp";
 import { Outlet } from "react-router-dom";
 
-function Root() {
+function RootComp() {
   return (
     <>
       <Navbar />
@@ -12,4 +12,4 @@ function Root() {
   );
 }
 
-export default Root;
+export default RootComp;

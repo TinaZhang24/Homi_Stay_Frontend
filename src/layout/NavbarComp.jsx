@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../features/auth/authSlice";
 
-const Navbar = () => {
+const NavbarComp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -130,4 +130,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarComp;

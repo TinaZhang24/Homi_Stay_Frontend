@@ -4,7 +4,7 @@ import { useAddBookingMutation, useGetRoomQuery } from "./roomSlice";
 import { useState } from "react";
 import "./rooms.css";
 
-export default function RoomDetail() {
+export default function RoomDetailComp() {
   const { roomId } = useParams();
   const { data: room, isLoading, error } = useGetRoomQuery(roomId);
   const [formData, setFormData] = useState({

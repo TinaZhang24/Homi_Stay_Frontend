@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useGetAvailableRoomsQuery } from "./roomSlice";
 
-export default function AvailabilityForm() {
+export default function AvailabilityFormComp() {
   const [formData, setFormData] = useState({
     fromDate: "",
     toDate: "",

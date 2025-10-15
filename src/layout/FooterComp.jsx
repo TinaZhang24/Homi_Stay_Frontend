@@ -1,6 +1,6 @@
 import "./footer.css";
 
-const Footer = () => {
+const FooterComp = () => {
   return (
     <div className="footer">
       <a href="/">Contact Us</a>
@@ -10,4 +10,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterComp;

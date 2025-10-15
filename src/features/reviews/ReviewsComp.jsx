@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./Reviews.css";
 
 /** Displays a list of reviews that belongs to all bookings of a specific room */
-export default function Reviews() {
+export default function ReviewsComp() {
   const { roomId } = useParams();
   const { data: room, isLoading, error } = useGetReviewsQuery(roomId);
   if (!room?.review?.length) {

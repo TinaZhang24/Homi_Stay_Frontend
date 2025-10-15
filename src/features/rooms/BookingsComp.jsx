@@ -8,7 +8,7 @@ import { useState } from "react";
 import "./rooms.css";
 
 /** Displays a list of rooms that a logged in user has booked, cancels a booking, posts a review*/
-export default function Bookings() {
+export default function BookingsComp() {
   const { data: bookings = [] } = useGetBookingsQuery();
   const { roomId } = useParams();
   if (roomId) {

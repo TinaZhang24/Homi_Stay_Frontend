@@ -4,7 +4,7 @@ import { useGetAdminRoomsQuery, useAddAdminRoomMutation } from "./adminSlice";
 import { useState } from "react";
 import "./admin.css";
 
-export default function AdminRooms() {
+export default function AdminRoomsComp() {
   /** Get rooms */
   const { data: rooms = [], isLoading, error } = useGetAdminRoomsQuery();
   /** Grab isAdmin value from local storage */

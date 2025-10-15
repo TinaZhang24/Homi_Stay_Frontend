@@ -3,7 +3,7 @@ import { useGetAdminBookingsQuery } from "./adminSlice";
 import { useState } from "react";
 import "./admin.css";
 
-export default function AdminBookings() {
+export default function AdminBookingsComp() {
   const { data: bookings = [], isLoading, error } = useGetAdminBookingsQuery();
   /** Grab isAdmin value from local storage */
   const [isAdmin, setIsAdmin] = useState(

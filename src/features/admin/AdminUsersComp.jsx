@@ -3,7 +3,7 @@ import { useGetUsersQuery } from "./adminSlice";
 import { useState } from "react";
 import "./admin.css";
 
-export default function AdminUsers() {
+export default function AdminUsersComp() {
   const { data: users = [], isLoading, error } = useGetUsersQuery();
   /** Grab isAdmin value from local storage */
   const [isAdmin, setIsAdmin] = useState(

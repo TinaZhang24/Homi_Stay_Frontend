@@ -5,7 +5,7 @@ import RoomListComp from "./features/rooms/RoomListComp";
 import RoomDetailComp from "./features/rooms/RoomDetailComp";
 import BookingsComp from "./features/rooms/BookingsComp";
 import Login from "./features/auth/AuthForm";
-import AdminPage from "./features/admin/AdminPage";
+import AdminPageComp from "./features/admin/AdminPageComp";
 import AdminUsers from "./features/admin/AdminUsers";
 import AdminBookings from "./features/admin/AdminBookings";
 import AdminRooms from "./features/admin/AdminRooms";
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       { path: "/bookings", element: <BookingsComp /> },
       { path: "/rooms/:roomId", element: <RoomDetailComp /> },
       { path: "/rooms/:roomId/reviews", element: <ReviewsComp /> },
-      { path: "/admin", element: <AdminPage /> },
+      { path: "/admin", element: <AdminPageComp /> },
       { path: "/admin/users", element: <AdminUsers /> },
       { path: "/admin/bookings", element: <AdminBookings /> },
       { path: "/admin/rooms", element: <AdminRooms /> },

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./admin.css";
 
-export default function AdminPage() {
+export default function AdminPageComp() {
   return (
     <>
       <div className="adminNavbar">

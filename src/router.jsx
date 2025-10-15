@@ -13,7 +13,7 @@ import UserDelete from "./features/admin/UserDeletePage";
 import BookingDelete from "./features/admin/BookingDeletePage";
 import RoomDelete from "./features/admin/RoomDeletePage";
 import Reviews from "./features/reviews/Reviews";
-
+// Define the routes for the application
 const router = createBrowserRouter([
   {
     path: "/",
